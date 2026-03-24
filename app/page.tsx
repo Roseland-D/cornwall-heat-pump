@@ -6,7 +6,7 @@ import { CheckCircle2, Wrench, ShieldCheck, Thermometer, CalendarDays, MapPin, B
 
 const services = [
   {
-    title: "Annual Heat Pump Servicing",
+    title: "Annual Service Contracts",
     text: "Keep your air source or ground source heat pump running efficiently with a thorough yearly service and performance check.",
     icon: Wrench,
   },
@@ -132,11 +132,15 @@ export default function HeatPumpServiceWebsite() {
               <div className="mb-8 h-[3px] w-full max-w-xl bg-gradient-to-r from-green-500 via-blue-500 to-emerald-400 rounded-full shadow-[0_0_12px_rgba(34,197,94,0.6)]"></div>
 
               <h1 className="max-w-xl text-4xl font-semibold tracking-tight text-slate-900 md:text-6xl">
-                Heat pump servicing and maintenance that keeps your system working efficiently.
+                Heat pump servicing and maintenance that keeps your system running efficiently and reliably.
               </h1>
 
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
                 Professional servicing and fault-finding for air source and ground source heat pumps, helping homes and properties stay warm, efficient, and dependable all year round.
+              </p>
+
+              <p className="mt-4 text-base font-semibold text-slate-900">
+                Book your service or request a callback today.
               </p>
 
               <p className="mt-3 text-sm font-medium text-slate-600">
@@ -189,13 +193,7 @@ export default function HeatPumpServiceWebsite() {
                       placeholder="Full name"
                       required
                     />
-                    <input
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-400"
-                      placeholder="Phone number"
-                    />
+                    
                     <input
                       type="email"
                       name="email"
@@ -234,8 +232,11 @@ export default function HeatPumpServiceWebsite() {
                       required
                     />
                     <Button type="submit" className="w-full rounded-2xl py-6 text-base">
-                      Send enquiry
+                      Request my service
                     </Button>
+                    <p className="mt-3 text-sm text-slate-500 text-center">
+                      We’ll get back to you within 24 hours.
+                    </p>
                   </form>
                 </CardContent>
               </Card>
