@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   CheckCircle2,
   Wrench,
@@ -10,6 +9,8 @@ import {
   BadgePoundSterling,
   ClipboardCheck,
   Mail,
+  Phone,
+  ArrowRight,
 } from "lucide-react";
 
 const services = [
@@ -45,50 +46,27 @@ const benefits = [
   "Service support for homeowners, landlords, and holiday lets",
 ];
 
+const trustPoints = [
+  "10+ years specialist heat pump experience",
+  "Manufacturer-trained support",
+  "Cornwall-based service",
+];
+
 const company = {
   name: "Cornwall Heat Pump Services",
   email: "service@roselandenergy.co.uk",
   emailHref: "mailto:service@roselandenergy.co.uk",
 };
 
-const initialForm = {
-  name: "",
-  phone: "",
-  email: "",
-  postcode: "",
-  service: "Annual service contract",
-  message: "",
-};
-
-function Card({
-  className = "",
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
+function Card({ className = "", children }: any) {
   return <div className={className}>{children}</div>;
 }
 
-function CardContent({
-  className = "",
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
+function CardContent({ className = "", children }: any) {
   return <div className={className}>{children}</div>;
 }
 
-function Button({
-  className = "",
-  children,
-  type = "button",
-}: {
-  className?: string;
-  children: React.ReactNode;
-  type?: "button" | "submit" | "reset";
-}) {
+function Button({ className = "", children, type = "button" }: any) {
   return (
     <button
       type={type}
@@ -100,392 +78,122 @@ function Button({
 }
 
 export default function HeatPumpServiceWebsite() {
-  const [formData, setFormData] = useState(initialForm);
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = event.target;
-    setFormData((current) => ({ ...current, [name]: value }));
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const subject = `Heat Pump Enquiry - ${formData.service}${
-      formData.postcode ? ` - ${formData.postcode}` : ""
-    }`;
-
-    const bodyLines = [
-      `Name: ${formData.name || "Not provided"}`,
-      `Phone: ${formData.phone || "Not provided"}`,
-      `Email: ${formData.email || "Not provided"}`,
-      `Postcode: ${formData.postcode || "Not provided"}`,
-      `Service needed: ${formData.service || "Not provided"}`,
-      "",
-      "Enquiry details:",
-      formData.message || "Not provided",
-    ];
-
-    const mailto = `mailto:${company.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-      bodyLines.join("\n")
-    )}`;
-    window.location.href = mailto;
-  };
-
   return (
     <div className="min-h-screen bg-white text-slate-900">
-      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.15),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(59,130,246,0.12),_transparent_28%),linear-gradient(180deg,_#f8fafc_0%,_#ffffff_100%)]">
-        <div className="bg-gradient-to-r from-emerald-500 via-green-500 to-lime-400 px-6 py-4 text-center shadow-lg">
-          <p className="text-base font-bold tracking-wide text-white md:text-lg">
-            ANNUAL SERVICE CONTRACTS FROM JUST <span className="text-slate-950">£12.50 PER MONTH</span>
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+        <div className="border-b border-slate-200 bg-white/70 px-6 py-3 text-center backdrop-blur">
+          <p className="text-sm font-medium text-slate-700">
+            Service plans from <span className="font-semibold">£12.50 per month</span>
           </p>
         </div>
 
-        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10">
+          <div className="grid gap-14 lg:grid-cols-2">
             <div>
-              <div className="-mt-20 mb-8">
-                <div className="text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
-                  Cornwall Heat Pump Services
-                </div>
-                <div className="mt-1 text-sm text-slate-500">
-                  Specialist heat pump servicing & maintenance
-                </div>
-              </div>
-
-              <div className="mb-8 h-[3px] w-full max-w-xl rounded-full bg-gradient-to-r from-green-500 via-blue-500 to-emerald-400 shadow-[0_0_12px_rgba(34,197,94,0.6)]"></div>
-
-              <h1 className="max-w-xl text-4xl font-semibold tracking-tight text-slate-900 md:text-6xl">
-                Heat pump servicing and maintenance that keeps your system running efficiently and reliably.
+              <h1 className="text-4xl font-semibold md:text-6xl">
+                Specialist heat pump servicing across Cornwall.
               </h1>
 
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                Professional servicing and fault-finding for air source and ground source heat pumps, helping homes and properties stay warm, efficient, and dependable all year round.
+              <p className="mt-6 text-lg text-slate-600">
+                Professional servicing, repairs, and performance checks for air source and ground source heat pumps.
               </p>
 
-              <p className="mt-4 text-base font-semibold text-slate-900">
-                Book your service or request a callback today.
-              </p>
-
-              <p className="mt-3 text-sm font-medium text-slate-600">
-                Serving homes across Cornwall
-              </p>
-
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm text-slate-500">Specialist support</div>
-                  <div className="mt-1 font-semibold">Heat pumps only</div>
-                </div>
-                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm text-slate-500">Appointments</div>
-                  <div className="mt-1 font-semibold">Flexible scheduling</div>
-                </div>
-                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                  <div className="text-sm text-slate-500">Approach</div>
-                  <div className="mt-1 font-semibold">Clear, practical advice</div>
-                </div>
+              <div className="mt-6 flex flex-wrap gap-3">
+                {trustPoints.map((point) => (
+                  <span key={point} className="rounded-full border px-4 py-2 text-sm">
+                    {point}
+                  </span>
+                ))}
               </div>
             </div>
 
-            <div className="space-y-6 lg:pl-8">
-              <img
-                src="https://images.openai.com/static-rsc-3/zcujI6d2kTwXWugil43YWFV4hQbHU-NLBipNH3JN_0Wjxu4ZtYKPWaDHELSVCJbl_InthfSL-Obti1jBHyheh6JMO1kN-dDd1CzlpPLIl3A?purpose=fullsize&v=1"
-                alt="Air source heat pump installed beside a modern home"
-                className="h-64 w-full rounded-[28px] object-cover shadow-lg"
-              />
+            {/* FORM */}
+            <div className="rounded-3xl border p-8 shadow-xl">
+              <h2 className="text-xl font-semibold mb-4">
+                Request a callback or service quote
+              </h2>
 
-              <Card className="rounded-[28px] border-slate-200 shadow-xl shadow-slate-200/60">
-                <CardContent className="p-8 md:p-10">
-                  <div className="mb-6 flex items-center gap-3">
-                    <div className="rounded-2xl bg-slate-900 p-3 text-white">
-                      <Mail className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-slate-500">Quick enquiry</div>
-                      <div className="text-xl font-semibold">Contact {company.name}</div>
-                    </div>
-                  </div>
+              <form
+                action="https://formsubmit.co/service@roselandenergy.co.uk"
+                method="POST"
+                className="space-y-4"
+              >
+                <input type="hidden" name="_subject" value="New enquiry - Cornwall Heat Pump Services" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
 
-                  <form className="space-y-4" onSubmit={handleSubmit}>
-                    <input
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-400"
-                      placeholder="Full name"
-                      required
-                    />
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <input name="name" placeholder="Full name" required className="input" />
+                  <input name="phone" placeholder="Phone number" className="input" />
+                </div>
 
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-400"
-                      placeholder="Email address"
-                      required
-                    />
+                <input type="email" name="email" placeholder="Email address" required className="input" />
 
-                    <input
-                      name="postcode"
-                      value={formData.postcode}
-                      onChange={handleChange}
-                      className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-400"
-                      placeholder="Property postcode"
-                    />
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <input name="postcode" placeholder="Postcode" className="input" />
 
-                    <select
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-400"
-                    >
-                      <option value="Service needed">Service needed</option>
-                      <option value="Annual service contract">Annual service contract</option>
-                      <option value="Repair / fault finding">Repair / fault finding</option>
-                      <option value="System health check">System health check</option>
-                      <option value="Heating optimisation">Heating optimisation</option>
-                    </select>
+                  <select name="service" className="input">
+                    <option>Annual service</option>
+                    <option>Repair</option>
+                    <option>Health check</option>
+                    <option>Optimisation</option>
+                  </select>
+                </div>
 
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows={4}
-                      className="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-slate-400"
-                      placeholder="Tell us a little about your system or the issue"
-                      required
-                    />
+                <textarea name="message" placeholder="Tell us about your system" required className="input" />
 
-                    <Button type="submit" className="w-full rounded-2xl py-6 text-base">
-                      Request my service
-                    </Button>
-
-                    <p className="mt-3 text-center text-sm text-slate-500">
-                      We’ll get back to you within 24 hours.
-                    </p>
-                  </form>
-                </CardContent>
-              </Card>
+                <button className="w-full rounded-2xl bg-slate-900 py-4 text-white">
+                  Request my service
+                </button>
+              </form>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-18 md:px-10">
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div>
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-              Experienced, manufacturer-trained support
-            </h2>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
-              With over a decade working specifically with heat pumps, Cornwall Heat Pump Services provides specialist knowledge built from real-world systems, not just manuals.
-            </p>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
-              Trained by leading manufacturers including Mitsubishi, Vaillant, Daikin, Samsung, Danfoss, Thermia, Kensa, and Mastertherm, you can be confident your system is in capable hands.
-            </p>
-          </div>
+      {/* SERVICES */}
+      <section className="max-w-7xl mx-auto px-6 py-20">
+        <h2 className="text-3xl font-semibold mb-10">Services</h2>
 
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-            <h3 className="text-xl font-semibold">All manufacturers covered</h3>
-            <p className="mt-3 text-slate-600">
-              Whether your system is older, newly installed, or somewhere in between, support is available across all major heat pump brands and system types.
-            </p>
-
-            <ul className="mt-4 grid grid-cols-2 gap-2 text-sm text-slate-700">
-              <li>• Mitsubishi</li>
-              <li>• Vaillant</li>
-              <li>• Daikin</li>
-              <li>• Samsung</li>
-              <li>• Danfoss</li>
-              <li>• Thermia</li>
-              <li>• Kensa</li>
-              <li>• Mastertherm</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-18 md:px-10">
-        <div className="max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Services</h2>
-          <p className="mt-4 text-lg text-slate-600">
-            Everything your heat pump needs to stay efficient, reliable, and ready for the seasons ahead.
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {services.map((service) => {
-            const Icon = service.icon;
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {services.map((s) => {
+            const Icon = s.icon;
             return (
-              <Card
-                key={service.title}
-                className="rounded-[26px] border-slate-200 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-              >
-                <CardContent className="p-6">
-                  <div className="mb-4 inline-flex rounded-2xl bg-slate-100 p-3">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="text-xl font-semibold">{service.title}</h3>
-                  <p className="mt-3 leading-7 text-slate-600">{service.text}</p>
-                </CardContent>
-              </Card>
+              <div key={s.title} className="border rounded-2xl p-6">
+                <Icon className="mb-3" />
+                <h3 className="font-semibold">{s.title}</h3>
+                <p className="text-sm text-slate-600 mt-2">{s.text}</p>
+              </div>
             );
           })}
         </div>
       </section>
 
-      <section className="bg-slate-50">
-        <div className="mx-auto max-w-7xl px-6 py-18 md:px-10">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-              Service plans & monthly options
-            </h2>
-            <p className="mt-4 text-lg text-slate-600">
-              Flexible service agreements designed to keep your system running smoothly all year round, with the option to spread the cost through simple monthly payments.
-              <br />
-              <span className="font-semibold text-slate-900">From just £12.50 per month.</span>
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <Card className="rounded-[26px] border-slate-200 shadow-sm">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold">Basic Plan</h3>
-                <p className="mt-3 text-slate-600">
-                  Annual service and system check to keep your heat pump efficient and reliable.
-                </p>
-                <ul className="mt-4 space-y-2 text-sm text-slate-700">
-                  <li>• Annual servicing visit</li>
-                  <li>• System performance check</li>
-                  <li>• Priority booking</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="relative rounded-[26px] border-2 border-slate-200 shadow-lg">
-              <CardContent className="p-6">
-                <div className="mb-4 inline-flex rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
-                  Most popular
-                </div>
-                <h3 className="text-xl font-semibold">Standard Plan</h3>
-                <p className="mt-3 text-slate-600">
-                  Ongoing support with servicing plus help when things are not quite right.
-                </p>
-                <ul className="mt-4 space-y-2 text-sm text-slate-700">
-                  <li>• Annual servicing visit</li>
-                  <li>• Reduced call-out fees</li>
-                  <li>• Priority response</li>
-                  <li>• System optimisation advice</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-[26px] border-slate-200 shadow-sm">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold">Premium Plan</h3>
-                <p className="mt-3 text-slate-600">
-                  Complete peace of mind with full support and faster response when you need it.
-                </p>
-                <ul className="mt-4 space-y-2 text-sm text-slate-700">
-                  <li>• Annual servicing visit</li>
-                  <li>• Priority call-outs</li>
-                  <li>• Discounted repairs</li>
-                  <li>• Ongoing system monitoring advice</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-            <p className="text-lg text-slate-700">
-              Service plans available from <span className="font-semibold">£12.50 per month</span>, making it easy to keep your heat pump maintained without large upfront costs.
-            </p>
-          </div>
-        </div>
-
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-18 md:px-10 lg:grid-cols-2">
-          <div>
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-              Why regular servicing matters
-            </h2>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
-              Heat pumps are wonderfully efficient when they are set up and maintained properly. A regular service helps keep performance where it should be, catches issues early, and gives you peace of mind when you need heating and hot water most.
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {benefits.map((item) => (
-              <div key={item} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" />
-                  <p className="text-slate-700">{item}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* BENEFITS */}
+      <section className="bg-slate-50 py-20 px-6">
+        <div className="max-w-7xl mx-auto grid gap-6 sm:grid-cols-2">
+          {benefits.map((b) => (
+            <div key={b} className="flex gap-3">
+              <CheckCircle2 />
+              <span>{b}</span>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-18 md:px-10">
-        <div className="grid gap-6 lg:grid-cols-3">
-          <Card className="rounded-[26px] border-slate-200 shadow-sm">
-            <CardContent className="p-7">
-              <MapPin className="mb-4 h-6 w-6" />
-              <h3 className="text-xl font-semibold">Local, responsive service</h3>
-              <p className="mt-3 leading-7 text-slate-600">
-                A friendly, dependable Cornwall-based service for domestic properties, landlords, and holiday lets.
-              </p>
-            </CardContent>
-          </Card>
+      {/* CTA */}
+      <section className="bg-slate-900 text-white py-20 px-6 text-center">
+        <h2 className="text-3xl font-semibold">
+          Ready to book a service?
+        </h2>
+        <p className="mt-4 text-slate-300">
+          Get in touch today for a quick quote or callback.
+        </p>
 
-          <Card className="rounded-[26px] border-slate-200 shadow-sm">
-            <CardContent className="p-7">
-              <BadgePoundSterling className="mb-4 h-6 w-6" />
-              <h3 className="text-xl font-semibold">Straightforward pricing</h3>
-              <p className="mt-3 leading-7 text-slate-600">
-                Transparent pricing and sensible recommendations, without turning the quote into a treasure hunt.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="rounded-[26px] border-slate-200 shadow-sm">
-            <CardContent className="p-7">
-              <ShieldCheck className="mb-4 h-6 w-6" />
-              <h3 className="text-xl font-semibold">Trusted advice</h3>
-              <p className="mt-3 leading-7 text-slate-600">
-                Honest guidance on servicing, repairs, controls, and system efficiency so you can make informed decisions.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      <section className="bg-slate-900 text-white">
-        <div className="mx-auto max-w-7xl px-6 py-18 md:px-10">
-          <div className="grid items-center gap-8 lg:grid-cols-2">
-            <div>
-              <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-                Ready to book a service or ask about a repair?
-              </h2>
-              <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
-                Get in touch for a quick quote, a callback, or help with a heat pump that is not performing as it should.
-              </p>
-              <p className="mt-3 text-sm font-medium uppercase tracking-wide text-emerald-300">
-                Limited service slots available each week
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4 lg:justify-end">
-              <a
-                href={company.emailHref}
-                className="inline-flex items-center justify-center rounded-2xl border border-white/30 bg-transparent px-6 py-6 text-base text-white transition hover:bg-white/10"
-              >
-                Email {company.email}
-              </a>
-            </div>
-          </div>
-        </div>
+        <a href="mailto:service@roselandenergy.co.uk" className="inline-block mt-6 underline">
+          Email us directly
+        </a>
       </section>
     </div>
   );
