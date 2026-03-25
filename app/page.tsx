@@ -1,3 +1,9 @@
+import HeatPumpServiceWebsite from "./HeatPumpServiceWebsite";
+
+export default function Page() {
+  return <HeatPumpServiceWebsite />;
+}
+
 "use client";
 
 import { useState } from "react";
